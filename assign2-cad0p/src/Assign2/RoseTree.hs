@@ -9,7 +9,10 @@ Stability   : experimental
 
 -}
 
-module Assign2.RoseTree where
+module Assign2.RoseTree 
+                      ( Applicative
+                      , RoseTree (..)
+                      ) where
 
 import Assign2        ( Functor
                       , Applicative
@@ -41,7 +44,7 @@ import Prelude hiding ( Functor
 
 
 data RoseTree a = RoseNode a [RoseTree a] | RoseLeaf
-  deriving Show
+  deriving (Eq, Show)
 
 
 {-|
@@ -68,5 +71,4 @@ instance Applicative RoseTree where
   _ <*> RoseLeaf  = RoseLeaf
   (RoseNode f rs) <*> r'@(RoseNode v rs') = 
     RoseNode (f v) (map (fmap f) rs' ++ map (<*> r') rs)
-
 

@@ -1,7 +1,36 @@
+import Assign2        ( Functor
+                      , Applicative
+                      , Monad
+                      , Foldable
+                      , Traversable
+                      , fmap 
+                      , pure
+                      , (<*>)
+                      , return
+                      , (>>=)
+                      , foldMap
+                      , traverse
+                      )
+
+
+import Prelude hiding ( Functor
+                      , Applicative
+                      , Monad
+                      , Foldable
+                      , Traversable
+                      , fmap 
+                      , pure
+                      , (<*>)
+                      , return
+                      , (>>=)
+                      , foldMap
+                      , traverse
+                      )
+
 import          Test.Tasty
 import          Test.Tasty.QuickCheck         as QC
 import          Test.Tasty.HUnit              as HU
-import Assign2.RoseTree (RoseTree(..))
+import Assign2.RoseTree (RoseTree(..), Applicative)
 -- import          Test.Tasty.QuickCheck.Laws.Functor (testFunctorLaws)
 
 -- import qualified Assign2 as A2
@@ -55,8 +84,10 @@ huRoseTreeApplicative
             :: TestTree
 huRoseTreeApplicative
             =   testGroup "Applicative"
-              [ testCase  "RoseLeaf r"
-                  (RoseNode (+1) [RoseNode (*2) []] <*> RoseLeaf @?= RoseLeaf)
+              [ testCase  "RoseLeaf r" ( assertEqual ""
+                  ((RoseNode (+1) :: [RoseTree (Int -> Int)] -> RoseTree (Int -> Int)) 
+                    [RoseNode (*2) [] :: RoseTree (Int -> Int)] <*> RoseLeaf)
+                  RoseLeaf)
               ]
 
 huTeletype  ::  TestTree
