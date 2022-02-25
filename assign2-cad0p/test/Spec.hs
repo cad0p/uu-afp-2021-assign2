@@ -28,12 +28,12 @@ import Prelude hiding ( Functor
                       )
 
 import          Test.Tasty
-import          Test.Tasty.QuickCheck         as QC
 import          Test.Tasty.HUnit              as HU
-import Assign2.RoseTree (RoseTree(..), Applicative)
+-- import          Test.Tasty.QuickCheck         as QC
 -- import          Test.Tasty.QuickCheck.Laws.Functor (testFunctorLaws)
 
--- import qualified Assign2 as A2
+import          Assign2.RoseTree (RoseTree(..))
+
 
 main :: IO ()
 main = defaultMain tests
@@ -84,10 +84,10 @@ huRoseTreeApplicative
             :: TestTree
 huRoseTreeApplicative
             =   testGroup "Applicative"
-              [ testCase  "RoseLeaf r" ( assertEqual ""
+              [ testCase  "RoseLeaf r" (
                   ((RoseNode (+1) :: [RoseTree (Int -> Int)] -> RoseTree (Int -> Int)) 
-                    [RoseNode (*2) [] :: RoseTree (Int -> Int)] <*> RoseLeaf)
-                  RoseLeaf)
+                    [RoseNode (*2) [] :: RoseTree (Int -> Int)] <*> RoseLeaf) 
+                    @?= RoseLeaf)
               ]
 
 huTeletype  ::  TestTree
