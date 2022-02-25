@@ -1,3 +1,14 @@
+{-|
+Module      : Assign2.Tree
+Description : Tree instatiation of the classes
+Copyright   : (c) Pier Carlo Cadoppi, 2022
+License     : MIT License
+Maintainer  : p.c.cadoppi@students.uu.nl
+Stability   : experimental
+
+
+-}
+
 module Assign2.Tree where
 
 import Assign2        ( Functor

@@ -1,3 +1,14 @@
+{-|
+Module      : Assign2
+Description : Second assignment on Functor, Applicative, Monad, Foldable, and Traversable
+Copyright   : (c) Pier Carlo Cadoppi, 2022
+License     : MIT License
+Maintainer  : p.c.cadoppi@students.uu.nl
+Stability   : experimental
+
+
+-}
+
 module Assign2
                       ( Functor
                       , Applicative

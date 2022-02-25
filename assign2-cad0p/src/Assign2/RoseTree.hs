@@ -1,3 +1,14 @@
+{-|
+Module      : Assign2.RoseTree
+Description : RoseTree instatiation of the classes
+Copyright   : (c) Pier Carlo Cadoppi, 2022
+License     : MIT License
+Maintainer  : p.c.cadoppi@students.uu.nl
+Stability   : experimental
+
+
+-}
+
 module Assign2.RoseTree where
 
 import Assign2        ( Functor
