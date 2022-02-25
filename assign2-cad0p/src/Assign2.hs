@@ -1,20 +1,26 @@
 module Assign2
                       ( Functor
                       , Applicative
+                      , Monad
                       , Traversable
                       , fmap 
                       , pure
                       , (<*>)
+                      , return
+                      , (>>=)
                       , traverse
                       , Tree
                       ) where
 
 import Prelude hiding ( Functor
                       , Applicative
+                      , Monad
                       , Traversable
                       , fmap 
                       , pure
                       , (<*>)
+                      , return
+                      , (>>=)
                       , traverse
                       )
 
@@ -72,7 +78,20 @@ instance Applicative Tree where
     Node (a <*> a') (b <*> b')
 
 
+{-|
+  >>> *Assign2> ( Node (Leaf 1) (Leaf 2) ) >>= dec
+  >>Node (Leaf 0) (Leaf 1)
+-}
+instance Monad Tree where
+  return = pure
+  (Leaf a)    >>= f = f a
+  (Node a b)  >>= f = Node (a >>= f) (b >>= f)
+  
 
+
+
+{-| 'dec' is a test function to decrease Leaves by 1
+-}
 dec :: Int -> Tree Int
 dec n = if n > 0 then Leaf (n - 1) else Leaf 0  
 
