@@ -3,7 +3,7 @@ import Assign2        ( Functor
                       , Monad
                       , Foldable
                       , Traversable
-                      , fmap 
+                      , fmap
                       , pure
                       , (<*>)
                       , return
@@ -18,7 +18,7 @@ import Prelude hiding ( Functor
                       , Monad
                       , Foldable
                       , Traversable
-                      , fmap 
+                      , fmap
                       , pure
                       , (<*>)
                       , return
@@ -85,9 +85,20 @@ huRoseTreeApplicative
 huRoseTreeApplicative
             =   testGroup "Applicative"
               [ testCase  "RoseLeaf r" (
-                  ((RoseNode (+1) :: [RoseTree (Int -> Int)] -> RoseTree (Int -> Int)) 
-                    [RoseNode (*2) [] :: RoseTree (Int -> Int)] <*> RoseLeaf) 
-                    @?= RoseLeaf)
+                -- https://kseo.github.io/posts/2017-01-04-type-defaulting-in-haskell.html
+                  ((RoseNode (+1) :: [RoseTree (Int -> Int)] -> RoseTree (Int -> Int))
+                    [RoseNode (*2) [] :: RoseTree (Int -> Int)] <*> RoseLeaf)
+                  @?= RoseLeaf)
+              , testCase "RoseLeaf l" (
+                (RoseLeaf <*>
+                  RoseNode (7 :: Int) [RoseNode 1 [], RoseNode 2 [], RoseNode 3 [RoseNode 4 []]]
+                  :: RoseTree Int)
+                @?= RoseLeaf)
+              , testCase "RoseNode RoseNose 1" (
+                  (RoseNode (+1) [] <*>
+                    RoseNode (7 :: Int) [RoseNode 1 [], RoseNode 2 [], RoseNode 3 [RoseNode 4 []]])
+                  @?= RoseNode 8 [RoseNode 2 [],RoseNode 3 [],RoseNode 4 [RoseNode 5 []]]
+                )
               ]
 
 huTeletype  ::  TestTree
