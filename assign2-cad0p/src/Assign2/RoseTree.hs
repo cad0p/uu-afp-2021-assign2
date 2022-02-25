@@ -59,3 +59,14 @@ instance Functor [] where
   fmap _ []       = []
   fmap f (x : xs) = f x : fmap f xs
 
+{-|
+  https://stackoverflow.com/questions/57950226/how-do-i-map-functions-over-a-rosetree-in-applicative-haskell
+-}
+instance Applicative RoseTree where
+  pure a = RoseNode a []
+  RoseLeaf <*> _  = RoseLeaf
+  _ <*> RoseLeaf  = RoseLeaf
+  (RoseNode f rs) <*> r'@(RoseNode v rs') = 
+    RoseNode (f v) (map (fmap f) rs' ++ map (<*> r') rs)
+
+
