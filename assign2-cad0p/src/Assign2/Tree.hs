@@ -12,7 +12,6 @@ import Assign2        ( Functor
                       , (>>=)
                       , foldMap
                       , traverse
-                      , Tree (..)
                       )
 
 import Prelude hiding ( Functor
@@ -28,6 +27,9 @@ import Prelude hiding ( Functor
                       , foldMap
                       , traverse
                       )
+
+data Tree a = Leaf a | Node (Tree a) (Tree a)
+  deriving Show
 
 
 {-|

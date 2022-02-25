@@ -11,7 +11,6 @@ module Assign2
                       , (>>=)
                       , foldMap
                       , traverse
-                      , Tree (..)
                       , RoseTree (..)
                       , Teletype (..)
                       ) where
@@ -55,8 +54,7 @@ class Traversable t where
 
 -- Given the standard type classes for functors, applicative functors and monads:
 
-data Tree a = Leaf a | Node (Tree a) (Tree a)
-  deriving Show
+
 
 data RoseTree a = RoseNode a [RoseTree a] | RoseLeaf
   deriving Show
