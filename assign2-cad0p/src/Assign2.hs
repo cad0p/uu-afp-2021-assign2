@@ -53,8 +53,7 @@ data Teletype a = Get (Char -> Teletype a)
 
 
 {-|
-  Example: 
-  >fmap (+1) ( Node (Leaf 1) (Leaf 2) )
+  >>> fmap (+1) ( Node (Leaf 1) (Leaf 2) )
 -}
 instance Functor Tree where
   fmap f (Leaf a) = Leaf (f a)
@@ -74,9 +73,13 @@ instance Applicative Tree where
 
 
 
-dec :: Int -> Maybe Int
-dec n = if n > 0 then Just (n - 1) else Nothing  
+dec :: Int -> Tree Int
+dec n = if n > 0 then Leaf (n - 1) else Leaf 0  
 
+{-|
+  >>> traverse dec ( Node (Leaf 1) (Leaf 2) )
+  >>> Leaf (Node (Leaf 0) (Leaf 1))
+-}
 instance Traversable Tree where
   traverse f (Leaf a)   = pure Leaf <*> f a
   traverse f (Node a b) = 
