@@ -11,7 +11,6 @@ module Assign2
                       , (>>=)
                       , foldMap
                       , traverse
-                      , RoseTree (..)
                       , Teletype (..)
                       ) where
 
@@ -56,8 +55,6 @@ class Traversable t where
 
 
 
-data RoseTree a = RoseNode a [RoseTree a] | RoseLeaf
-  deriving Show
 
 data Teletype a = Get (Char -> Teletype a)
                 | Put Char (Teletype a)
