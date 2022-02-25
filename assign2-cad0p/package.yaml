@@ -57,3 +57,4 @@ tests:
     - tasty
     - tasty-quickcheck
     - tasty-quickcheck-laws
+    - tasty-hunit
