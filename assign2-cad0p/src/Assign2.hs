@@ -2,12 +2,14 @@ module Assign2
                       ( Functor
                       , Applicative
                       , Monad
+                      , Foldable
                       , Traversable
                       , fmap 
                       , pure
                       , (<*>)
                       , return
                       , (>>=)
+                      , foldMap
                       , traverse
                       , Tree
                       ) where
@@ -15,12 +17,14 @@ module Assign2
 import Prelude hiding ( Functor
                       , Applicative
                       , Monad
+                      , Foldable
                       , Traversable
                       , fmap 
                       , pure
                       , (<*>)
                       , return
                       , (>>=)
+                      , foldMap
                       , traverse
                       )
 
@@ -78,6 +82,13 @@ instance Applicative Tree where
     Node (a <*> a') (b <*> b')
 
 
+{-| 'dec' is a test function to decrease Leaves by 1
+-}
+dec :: Int -> Tree Int
+dec n = if n > 0 then Leaf (n - 1) else Leaf 0  
+
+
+
 {-|
   >>> *Assign2> ( Node (Leaf 1) (Leaf 2) ) >>= dec
   >>Node (Leaf 0) (Leaf 1)
@@ -86,14 +97,16 @@ instance Monad Tree where
   return = pure
   (Leaf a)    >>= f = f a
   (Node a b)  >>= f = Node (a >>= f) (b >>= f)
-  
 
 
-
-{-| 'dec' is a test function to decrease Leaves by 1
+{-|
+  >>> *Assign2> foldMap (show) (Node  (Leaf 1) (Leaf 2)  )
+  >> "12"
 -}
-dec :: Int -> Tree Int
-dec n = if n > 0 then Leaf (n - 1) else Leaf 0  
+instance Foldable Tree where
+  foldMap f (Leaf a)    = f a
+  foldMap f (Node a b)  = foldMap f a <> foldMap f b
+
 
 {-|
   >>> traverse dec ( Node (Leaf 1) (Leaf 2) )
