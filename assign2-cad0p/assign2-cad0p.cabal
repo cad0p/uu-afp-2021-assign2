@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Assign2
+      Assign2.Tree
   other-modules:
       Paths_assign2_cad0p
   hs-source-dirs:
