@@ -53,6 +53,7 @@ test-suite assign2-cad0p-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      ArbitraryTest
       Paths_assign2_cad0p
   hs-source-dirs:
       test

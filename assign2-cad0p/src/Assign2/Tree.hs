@@ -39,12 +39,15 @@ import Prelude hiding ( Functor
                       , traverse
                       )
 
+import Data.Typeable (Typeable)
+
 data Tree a = Leaf a | Node (Tree a) (Tree a)
-  deriving Show
+  deriving (Eq, Show, Typeable)
 
 
 {-|
   >>> fmap (+1) ( Node (Leaf 1) (Leaf 2) )
+  >> Node (Leaf 2) (Leaf 3)
 -}
 instance Functor Tree where
   fmap f (Leaf a) = Leaf (f a)

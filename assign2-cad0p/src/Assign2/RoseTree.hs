@@ -41,10 +41,11 @@ import Prelude hiding ( Functor
                       , foldMap
                       , traverse
                       )
+import Data.Typeable (Typeable)
 
 
 data RoseTree a = RoseNode a [RoseTree a] | RoseLeaf
-  deriving (Eq, Show)
+  deriving (Eq, Show, Typeable)
 
 
 {-|
