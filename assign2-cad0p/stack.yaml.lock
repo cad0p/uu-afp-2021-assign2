@@ -3,14 +3,7 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: tasty-quickcheck-laws-0.0.3@sha256:a33a458e2a98feee96be41969382a63c9570fdbca262f07e56d6b4d0228b36cd,2105
-    pantry-tree:
-      size: 1528
-      sha256: fb68e01210ba5d9d979b1803a074ff8a2ab4972cfe2d2f6b6863a382914415e5
-  original:
-    hackage: tasty-quickcheck-laws-0.0.3@sha256:a33a458e2a98feee96be41969382a63c9570fdbca262f07e56d6b4d0228b36cd,2105
+packages: []
 snapshots:
 - completed:
     size: 590102
