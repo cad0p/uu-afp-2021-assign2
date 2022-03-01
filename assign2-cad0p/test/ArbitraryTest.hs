@@ -6,6 +6,7 @@ import Assign2        ( Functor
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -21,6 +22,7 @@ import Prelude hiding ( Functor
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return

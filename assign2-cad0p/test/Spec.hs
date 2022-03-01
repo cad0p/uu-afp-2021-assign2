@@ -4,6 +4,7 @@ import Assign2        ( Functor
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -19,6 +20,7 @@ import Prelude hiding ( Functor
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -30,8 +32,8 @@ import Prelude hiding ( Functor
 import          Test.Tasty
 import          Test.Tasty.HUnit              as HU
 -- import          Test.Tasty.QuickCheck         as QC
--- import          Test.Tasty.QuickCheck.Laws
--- import Data.Typeable (Proxy(..))
+import          Test.Tasty.QuickCheck.Laws
+import Data.Typeable (Proxy(..))
 
 import          Assign2.Tree     (Tree(..))
 import          Assign2.RoseTree (RoseTree(..))
@@ -56,10 +58,10 @@ qcProps     =   testGroup "QuickCheck"  [ qcTree
 qcTree      ::  TestTree
 qcTree      =   testGroup "Tree"
   [ testGroup "Functor Laws" [
-      -- testFunctorLaws 
-      --   (Proxy :: Proxy Tree) (Proxy :: Proxy ())
-      --   (Proxy :: Proxy Bool) (Proxy :: Proxy Int) (Proxy :: Proxy Char)
-      --   (const (==))
+      testFunctorLaws 
+        (Proxy :: Proxy Tree) (Proxy :: Proxy ())
+        (Proxy :: Proxy Bool) (Proxy :: Proxy Int) (Proxy :: Proxy Char)
+        (const (==))
     ]
     -- QC.testProperty "Functor Laws" []
       -- (testFunctorLaws A2.Functor A2.Tree)
