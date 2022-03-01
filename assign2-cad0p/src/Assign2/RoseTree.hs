@@ -65,21 +65,26 @@ instance Functor RoseTree where
   https://stackoverflow.com/questions/57950226/how-do-i-map-functions-over-a-rosetree-in-applicative-haskell
 -}
 instance Applicative RoseTree where
-  pure a = RoseNode a [RoseLeaf]
+  pure a = RoseNode a []
   RoseLeaf <*> _  = RoseLeaf
   _ <*> RoseLeaf  = RoseLeaf
   (RoseNode f rs) <*> r'@(RoseNode v rs') =
     RoseNode (f v) (map (fmap f) rs' ++ map (<*> r') rs)
 
 
-{-| 'dec' is a test function to decrease RoseNodes by 1
+{-| 'decFun' is a test function to decrease RoseNodes by 1
 -}
-dec :: Int -> Maybe Int
-dec n = if n > 0 then Just (n - 1) else Nothing 
+decFun :: Int -> RoseTree Int
+decFun n = if n > 0 then pure (n - 1) else RoseLeaf
+
+{-| 'decApp' is a test function to decrease RoseNodes by 1
+-}
+decApp :: Int -> Maybe Int
+decApp n = if n > 0 then Just (n - 1) else Nothing 
 
 {-|
-  >>> *Assign2.RoseTree> RoseNode 17 [RoseNode 23 [], RoseNode 29 []] >>= dec
-  >> RoseNode 16 [RoseNode 22 [],RoseNode 28 []]
+  >>> *Assign2.RoseTree> RoseNode 17 [RoseNode 23 [RoseLeaf], RoseNode 29 [RoseLeaf]] >>= decFun
+  >> RoseNode 16 [RoseNode 22 [RoseLeaf],RoseNode 28 [RoseLeaf]]
 -}
 instance Monad RoseTree where
   return = pure
