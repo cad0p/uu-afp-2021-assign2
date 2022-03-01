@@ -50,7 +50,8 @@ huTeletype  ::  TestTree
 huTeletype  =   testGroup "Teletype"    [ huTeletypeFunctor
                                         , huTeletypeApplicative
                                         , huTeletypeMonad
-                                        , huTeletypeFoldable ]
+                                        , huTeletypeFoldable
+                                        , huTeletypeTraversable ]
 
 
 huTeletypeFunctor     :: TestTree
@@ -110,5 +111,18 @@ huTeletypeFoldable    = testGroup "Foldable"
       foldMap show (Put 'c' (Put 'd' (Return (5 :: Int))))
     @?=
       "5"
+  )
+  , testCase "Get" (
+      foldMap show (Get Return)
+    @?=
+      mempty
+  )]
+
+huTeletypeTraversable :: TestTree
+huTeletypeTraversable = testGroup "Traversable"
+  [ testCase "Return" (
+      traverse decApp (Return 5)
+    @?=
+      Just (Return (4 :: Int))
   )]
 

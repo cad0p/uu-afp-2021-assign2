@@ -99,12 +99,20 @@ instance Monad Teletype where
   (Return a) >>= f = f a
 
 {-|
-  >>> 
-  >>  
+  >>> foldMap show (Return (5 :: Int))
+  >>  "5"
 -}
 instance Foldable Teletype where
   foldMap _ (Get _)    = mempty 
   foldMap f (Put _ tt) = foldMap f tt 
   foldMap f (Return a) = f a
 
+{-|
+  >>> 
+  >>  
+-}
+instance Traversable Teletype where
+  -- traverse f (Get g)
+  traverse f (Put c tt) = Put c <$> traverse f tt
+  traverse f (Return a) = Return <$> f a
 
