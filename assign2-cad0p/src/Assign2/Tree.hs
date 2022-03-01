@@ -95,7 +95,7 @@ instance Foldable Tree where
   >>> Leaf (Node (Leaf 0) (Leaf 1))
 -}
 instance Traversable Tree where
-  traverse f (Leaf a)   = Leaf <$> f a
+  traverse f (Leaf a)   = pure Leaf <*> f a
   traverse f (Node a b) = 
     pure Node <*> traverse f a <*> traverse f b
 
