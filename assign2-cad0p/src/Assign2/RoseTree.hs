@@ -9,7 +9,7 @@ Stability   : experimental
 
 -}
 
-module Assign2.RoseTree 
+module Assign2.RoseTree
                       ( Applicative
                       , RoseTree (..)
                       ) where
@@ -19,7 +19,7 @@ import Assign2        ( Functor
                       , Monad
                       , Foldable
                       , Traversable
-                      , fmap 
+                      , fmap
                       , pure
                       , (<*>)
                       , return
@@ -33,7 +33,7 @@ import Prelude hiding ( Functor
                       , Monad
                       , Foldable
                       , Traversable
-                      , fmap 
+                      , fmap
                       , pure
                       , (<*>)
                       , return
@@ -70,7 +70,7 @@ instance Applicative RoseTree where
   pure a = RoseNode a []
   RoseLeaf <*> _  = RoseLeaf
   _ <*> RoseLeaf  = RoseLeaf
-  (RoseNode f rs) <*> r'@(RoseNode v rs') = 
+  (RoseNode f rs) <*> r'@(RoseNode v rs') =
     RoseNode (f v) (map (fmap f) rs' ++ map (<*> r') rs)
 
 
@@ -96,6 +96,18 @@ instance Monad RoseTree where
   >>  "123456"
 -}
 instance Foldable RoseTree where
-  foldMap _ RoseLeaf        = mempty 
-  foldMap f (RoseNode x rs) = f x <> mconcat (map (foldMap f) rs)
- 
+  foldMap _ RoseLeaf        = mempty
+  foldMap f (RoseNode a rs) = f a <> mconcat (map (foldMap f) rs)
+
+
+{-|
+  According to here: 
+  https://mail.haskell.org/pipermail/haskell-cafe/2007-December/036616.html
+
+  This shoud work but it doesn't
+-}
+instance Traversable RoseTree where
+  traverse _ RoseLeaf         = pure RoseLeaf
+  traverse f (RoseNode a rs)  =
+    pure RoseNode <*> f a <*> traverse (traverse f) rs
+
