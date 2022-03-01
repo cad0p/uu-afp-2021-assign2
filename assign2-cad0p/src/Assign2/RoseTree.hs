@@ -90,6 +90,12 @@ instance Monad RoseTree where
     RoseLeaf -> RoseLeaf
     RoseNode a' l' -> RoseNode a' (l' ++ fmap (>>= f) l)
 
-  
 
-
+{-|
+  >>> foldMap (show) (RoseNode 1 [RoseNode 2 [RoseNode 3 [RoseLeaf]], RoseNode 4 [RoseLeaf], RoseNode 5 [RoseNode 6 [RoseLeaf]]])
+  >>  "123456"
+-}
+instance Foldable RoseTree where
+  foldMap _ RoseLeaf        = mempty 
+  foldMap f (RoseNode x rs) = f x <> mconcat (map (foldMap f) rs)
+ 
