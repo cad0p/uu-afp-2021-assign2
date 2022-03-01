@@ -113,9 +113,3 @@ instance Traversable RoseTree where
   traverse f (RoseNode a rs)  =
     pure RoseNode <*> f a <*> traverse (traverse f) rs
 
-{-|
-  
--}
-
-
-
