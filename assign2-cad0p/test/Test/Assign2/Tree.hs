@@ -50,8 +50,8 @@ huTree  =   testGroup "Tree"    [ huTreeFunctor
 
 huTreeFunctor     :: TestTree
 huTreeFunctor     = testGroup "Functor"
-  [ testCase "1" 
-      (fmap (+1) ( Node (Leaf 1) (Leaf 2) )
+  [ testCase "1" (
+      fmap (+1) ( Node (Leaf 1) (Leaf 2) )
     @?= 
       (Node (Leaf 2) (Leaf 3) :: Tree Int)
   )]

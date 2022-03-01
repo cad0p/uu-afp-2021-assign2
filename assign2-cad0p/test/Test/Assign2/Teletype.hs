@@ -46,10 +46,18 @@ qcTeletype  =   testGroup "Teletype"    []
 
 
 huTeletype  ::  TestTree
-huTeletype  =   testGroup "Teletype"    [ huTeletypeApplicative ]
+huTeletype  =   testGroup "Teletype"    [ huTeletypeFunctor
+                                        , huTeletypeApplicative ]
 
-huTeletypeApplicative
-            :: TestTree
-huTeletypeApplicative
-            =   testGroup "Applicative"
-            []
+
+huTeletypeFunctor     :: TestTree
+huTeletypeFunctor     = testGroup "Functor" []
+  -- [ testCase "1" (
+  --     fmap (+1) ( Return (2 :: Int) )
+  -- )]
+
+
+huTeletypeApplicative :: TestTree
+huTeletypeApplicative = testGroup "Applicative"
+  []
+
