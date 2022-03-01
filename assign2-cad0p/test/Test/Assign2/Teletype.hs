@@ -39,6 +39,7 @@ import          Test.Tasty.HUnit
 import          Test.Assign2.Helpers (decApp)
 
 import          Assign2.Teletype (Teletype(..))
+import Data.Char (digitToInt)
 
 
 qcTeletype  ::  TestTree
@@ -61,7 +62,7 @@ huTeletypeFunctor     = testGroup "Functor"
   , testCase "Put"    (
       fmap (+1) ( Put 'c' (Return 5) )
     @?=
-       Put 'c' (Return 6)
+       Put 'c' (Return (6 :: Int))
   )]
 
 
@@ -84,5 +85,16 @@ huTeletypeMonad       = testGroup "Monad"
       Return 5 >>= (Put 'c' . Put 'd' . Return) -- \x -> Put 'c' (Put 'd' (Return x)
     @?=
       Put 'c' (Put 'd' (Return (5 :: Int)))
-  )]
+  )
+  , testCase "Put" (
+      Put 'c' (Return 5) >>= Return
+    @?=
+      Return (5 :: Int)
+  )
+  , testCase "Get" (
+      Get (\c -> Put c (Return (digitToInt c))) >>= Return
+    @?=
+      Get (Return . digitToInt)
+  )
+  ]
 

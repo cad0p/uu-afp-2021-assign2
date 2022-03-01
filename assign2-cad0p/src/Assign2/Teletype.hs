@@ -95,7 +95,13 @@ instance Applicative Teletype where
 instance Monad Teletype where
   return = pure
   (Get g) >>= g' = Get (\x -> g x >>= g')
-  (Put c tt) >>= f = tt >>= f
+  (Put _ tt) >>= f = tt >>= f
   (Return a) >>= f = f a
 
-  
+{-|
+  >>> 
+  >>  
+-}
+-- instance Foldable Teletype where
+
+
