@@ -23,7 +23,6 @@ module Assign2
                       , (>>=)
                       , foldMap
                       , traverse
-                      , decApp
                       ) where
 
 -- https://stackoverflow.com/questions/34349072/importing-a-data-type-in-haskell
@@ -90,7 +89,4 @@ instance Applicative Maybe where
 
 -- See Tree, RoseTree, Teletype
 
-{-| 'decApp' is a test function to decrease objects by 1
--}
-decApp :: Int -> Maybe Int
-decApp n = if n > 0 then Just (n - 1) else Nothing 
+

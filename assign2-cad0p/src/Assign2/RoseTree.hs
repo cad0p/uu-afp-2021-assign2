@@ -27,7 +27,6 @@ import Assign2        ( Functor
                       , (>>=)
                       , foldMap
                       , traverse
-                      , decApp
                       )
 
 import Prelude hiding ( Functor

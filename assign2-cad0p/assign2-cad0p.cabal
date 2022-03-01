@@ -54,6 +54,7 @@ test-suite assign2-cad0p-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Test.Assign2.Helpers
       Test.Assign2.RoseTree
       Test.Assign2.Teletype
       Test.Assign2.Tree

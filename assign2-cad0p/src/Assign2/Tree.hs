@@ -24,7 +24,6 @@ import Assign2        ( Functor
                       , (>>=)
                       , foldMap
                       , traverse
-                      , decApp
                       )
 
 import Prelude hiding ( Functor
@@ -64,12 +63,6 @@ instance Applicative Tree where
     Node (a <*> pure v) (b <*> pure v)
   (Node a b)  <*> (Node a' b')  =
     Node (a <*> a') (b <*> b')
-
-
-{-| 'decFun' is a test function to decrease Leaves by 1
--}
-decFun :: Int -> Tree Int
-decFun n = if n > 0 then pure (n - 1) else Leaf 0
 
 
 

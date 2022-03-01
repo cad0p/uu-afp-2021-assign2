@@ -29,3 +29,4 @@ hUnit       ::  TestTree
 hUnit       =   testGroup "HUnit"       [ huTree
                                         , huRoseTree
                                         , huTeletype ]
+

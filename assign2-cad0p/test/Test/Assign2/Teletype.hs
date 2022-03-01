@@ -36,6 +36,7 @@ import Prelude hiding ( Functor
 
 import          Test.Tasty
 import          Test.Tasty.HUnit
+import          Test.Assign2.Helpers (decApp)
 
 import          Assign2.Teletype (Teletype(..))
 
