@@ -47,7 +47,8 @@ qcTeletype  =   testGroup "Teletype"    []
 
 huTeletype  ::  TestTree
 huTeletype  =   testGroup "Teletype"    [ huTeletypeFunctor
-                                        , huTeletypeApplicative ]
+                                        , huTeletypeApplicative
+                                        , huTeletypeMonad ]
 
 
 huTeletypeFunctor     :: TestTree
@@ -66,5 +67,13 @@ huTeletypeFunctor     = testGroup "Functor"
 
 huTeletypeApplicative :: TestTree
 huTeletypeApplicative = testGroup "Applicative"
-  []
+  [ testCase "Return" (
+      Return (+1) <*> Return 5
+    @?=
+      Return 6
+  )]
+
+huTeletypeMonad       :: TestTree
+huTeletypeMonad       = testGroup "Monad"
+  [ ]
 

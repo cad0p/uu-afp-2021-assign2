@@ -78,3 +78,9 @@ instance Functor Teletype where
   fmap f (Put c tt)   = Put c (f <$> tt)
   fmap f (Return tt)  = Return (f tt)
 
+instance Applicative Teletype where
+  pure = Return
+  (Get g) <*> tt' = Get(\c -> g c <*> tt')
+  (Put c tt) <*> tt' = Put c (tt <*> tt')
+  (Return a) <*> tt' = a <$> tt'
+
