@@ -15,7 +15,7 @@ module Assign2
                       , Monad
                       , Foldable
                       , Traversable
-                      , fmap 
+                      , fmap
                       , pure
                       , (<*>)
                       , return
@@ -32,7 +32,7 @@ import Prelude hiding ( Functor
                       , Monad
                       , Foldable
                       , Traversable
-                      , fmap 
+                      , fmap
                       , pure
                       , (<*>)
                       , return
@@ -60,6 +60,25 @@ class Foldable t where
 
 class Traversable t where
   traverse :: Applicative f => (a -> f b) -> t a -> f (t b)
+
+
+instance Functor [] where
+  fmap _ []       = []
+  fmap f (x : xs) = f x : fmap f xs
+
+instance Traversable [] where
+  traverse _ []     = pure []
+  traverse f (x:xs) = pure (:) <*> f x <*> traverse f xs
+
+
+instance Functor Maybe where
+  fmap f Nothing = Nothing
+  fmap f (Just x) = Just (f x)
+
+instance Applicative Maybe where
+  pure = Just
+  Nothing <*> _ = Nothing
+  (Just f) <*> something = fmap f something
 
 
 -- Given the standard type classes for functors, applicative functors and monads:
