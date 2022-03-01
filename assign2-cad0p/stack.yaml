@@ -36,7 +36,6 @@ packages:
 # forks / in-progress versions pinned to a git hash. For example:
 #
 extra-deps:
-- tasty-quickcheck-laws-0.0.3@sha256:a33a458e2a98feee96be41969382a63c9570fdbca262f07e56d6b4d0228b36cd,2105
 # - acme-missiles-0.3
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a

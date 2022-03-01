@@ -55,6 +55,4 @@ tests:
     - assign2-cad0p
     - QuickCheck
     - tasty
-    - tasty-quickcheck
-    - tasty-quickcheck-laws
     - tasty-hunit

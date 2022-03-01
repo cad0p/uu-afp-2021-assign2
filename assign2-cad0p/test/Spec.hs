@@ -30,15 +30,11 @@ import Prelude hiding ( Functor
                       )
 
 import          Test.Tasty
-import          Test.Tasty.HUnit              as HU
--- import          Test.Tasty.QuickCheck         as QC
-import          Test.Tasty.QuickCheck.Laws
-import Data.Typeable (Proxy(..))
+import          Test.Tasty.HUnit as HU
 
 import          Assign2.Tree     (Tree(..))
 import          Assign2.RoseTree (RoseTree(..))
 
--- import          ArbitraryTest
 
 
 main :: IO ()
@@ -56,22 +52,13 @@ qcProps     =   testGroup "QuickCheck"  [ qcTree
                                         , qcTeletype ]
 
 qcTree      ::  TestTree
-qcTree      =   testGroup "Tree"
-  [ testGroup "Functor Laws" [
-      testFunctorLaws 
-        (Proxy :: Proxy Tree) (Proxy :: Proxy ())
-        (Proxy :: Proxy Bool) (Proxy :: Proxy Int) (Proxy :: Proxy Char)
-        (const (==))
-    ]
-    -- QC.testProperty "Functor Laws" []
-      -- (testFunctorLaws A2.Functor A2.Tree)
-  ]
+qcTree      =   testGroup "Tree"        []
 
 qcRoseTree  ::  TestTree
-qcRoseTree  =   testGroup "RoseTree" []
+qcRoseTree  =   testGroup "RoseTree"    []
 
 qcTeletype  ::  TestTree
-qcTeletype  =   testGroup "Teletype" []
+qcTeletype  =   testGroup "Teletype"    []
 
 
 
@@ -79,18 +66,15 @@ unitTests   ::  TestTree
 unitTests   =   testGroup "Unit tests"  [ hUnit ]
 
 hUnit       ::  TestTree
-hUnit       =   testGroup "HUnit"   [ huTree
-                                    , huRoseTree
-                                    , huTeletype ]
+hUnit       =   testGroup "HUnit"       [ huTree
+                                        , huRoseTree
+                                        , huTeletype ]
 
 huTree      ::  TestTree
-huTree      =   testGroup "Tree"
-  [ -- hu.testProperty "Functor Laws" []
-      -- (testFunctorLaws A2.Functor A2.Tree)
-  ]
+huTree      =   testGroup "Tree"        []
 
 huRoseTree  ::  TestTree
-huRoseTree  =   testGroup "RoseTree" [ huRoseTreeApplicative ]
+huRoseTree  =   testGroup "RoseTree"    [ huRoseTreeApplicative ]
 
 huRoseTreeApplicative
             :: TestTree
