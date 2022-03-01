@@ -17,6 +17,7 @@ import Assign2        ( Functor
                       , Foldable
                       , Traversable
                       , fmap 
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -32,6 +33,7 @@ import Prelude hiding ( Functor
                       , Foldable
                       , Traversable
                       , fmap 
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -57,8 +59,7 @@ instance Functor Tree where
 
 instance Applicative Tree where
   pure = Leaf
-  Leaf f      <*> v             =
-    fmap f v
+  Leaf f      <*> v             = f <$> v
   Node a b    <*> Leaf v        =
     Node (a <*> pure v) (b <*> pure v)
   (Node a b)  <*> (Node a' b')  =
@@ -96,7 +97,7 @@ instance Foldable Tree where
   >>  Just (Node (Leaf 0) (Leaf 1))
 -}
 instance Traversable Tree where
-  traverse f (Leaf a)   = pure Leaf <*> f a
+  traverse f (Leaf a)   = Leaf <$> f a
   traverse f (Node a b) = 
-    pure Node <*> traverse f a <*> traverse f b
+    Node <$> traverse f a <*> traverse f b
 

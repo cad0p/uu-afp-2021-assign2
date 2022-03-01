@@ -20,6 +20,7 @@ import Assign2        ( Functor
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -35,6 +36,7 @@ import Prelude hiding ( Functor
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -111,5 +113,5 @@ instance Foldable RoseTree where
 instance Traversable RoseTree where
   traverse _ RoseLeaf         = pure RoseLeaf
   traverse f (RoseNode a rs)  =
-    pure RoseNode <*> f a <*> traverse (traverse f) rs
+    RoseNode <$> f a <*> traverse (traverse f) rs
 

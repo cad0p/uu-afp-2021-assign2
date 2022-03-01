@@ -16,6 +16,7 @@ module Assign2
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -34,6 +35,7 @@ import Prelude hiding ( Functor
                       , Foldable
                       , Traversable
                       , fmap
+                      , (<$>)
                       , pure
                       , (<*>)
                       , return
@@ -61,6 +63,9 @@ class Foldable t where
 
 class Traversable t where
   traverse :: Applicative f => (a -> f b) -> t a -> f (t b)
+
+(<$>) :: Functor f => (a -> b) -> f a -> f b
+(<$>) = fmap
 
 
 instance Functor [] where
