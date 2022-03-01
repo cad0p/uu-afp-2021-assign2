@@ -24,7 +24,6 @@ module Assign2
                       , foldMap
                       , traverse
                       , decApp
-                      , Teletype (..)
                       ) where
 
 -- https://stackoverflow.com/questions/34349072/importing-a-data-type-in-haskell
@@ -89,12 +88,7 @@ instance Applicative Maybe where
 
 -- Given the standard type classes for functors, applicative functors and monads:
 
-
-
-
-data Teletype a = Get (Char -> Teletype a)
-                | Put Char (Teletype a)
-                | Return a
+-- See Tree, RoseTree, Teletype
 
 {-| 'decApp' is a test function to decrease objects by 1
 -}

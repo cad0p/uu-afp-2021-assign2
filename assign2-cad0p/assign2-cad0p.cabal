@@ -27,6 +27,7 @@ library
   exposed-modules:
       Assign2
       Assign2.RoseTree
+      Assign2.Teletype
       Assign2.Tree
   other-modules:
       Paths_assign2_cad0p
@@ -54,6 +55,7 @@ test-suite assign2-cad0p-test
   main-is: Spec.hs
   other-modules:
       ArbitraryTest
+      Test.Assign2.RoseTree
       Paths_assign2_cad0p
   hs-source-dirs:
       test
