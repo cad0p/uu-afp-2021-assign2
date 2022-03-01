@@ -56,12 +56,10 @@ instance Functor Tree where
 
 instance Applicative Tree where
   pure = Leaf
-  Leaf f      <*> Leaf v        =
-    pure (f v)
+  Leaf f      <*> v             =
+    fmap f v
   Node a b    <*> Leaf v        =
     Node (a <*> pure v) (b <*> pure v)
-  Leaf f      <*> (Node a' b')  =
-    Node (pure f <*> a') (pure f <*> b')
   (Node a b)  <*> (Node a' b')  =
     Node (a <*> a') (b <*> b')
 
@@ -97,7 +95,7 @@ instance Foldable Tree where
   >>> Leaf (Node (Leaf 0) (Leaf 1))
 -}
 instance Traversable Tree where
-  traverse f (Leaf a)   = pure Leaf <*> f a
+  traverse f (Leaf a)   = Leaf <$> f a
   traverse f (Node a b) = 
     pure Node <*> traverse f a <*> traverse f b
 
