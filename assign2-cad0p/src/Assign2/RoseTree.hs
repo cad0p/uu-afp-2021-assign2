@@ -77,7 +77,7 @@ instance Applicative RoseTree where
 
 {-|
   >>> *Assign2.RoseTree> RoseNode 17 [RoseNode 23 [RoseLeaf], RoseNode 29 [RoseLeaf]] >>= decFun
-  >> RoseNode 16 [RoseNode 22 [RoseLeaf],RoseNode 28 [RoseLeaf]]
+  >>  RoseNode 16 [RoseNode 22 [RoseLeaf],RoseNode 28 [RoseLeaf]]
 -}
 instance Monad RoseTree where
   return = pure

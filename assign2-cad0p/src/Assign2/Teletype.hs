@@ -102,6 +102,9 @@ instance Monad Teletype where
   >>> 
   >>  
 -}
--- instance Foldable Teletype where
+instance Foldable Teletype where
+  foldMap _ (Get _)    = mempty 
+  foldMap f (Put c tt) = foldMap f tt 
+  foldMap f (Return a) = f a
 
 
