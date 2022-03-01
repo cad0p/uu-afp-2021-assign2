@@ -23,6 +23,7 @@ import Assign2        ( Functor
                       , (>>=)
                       , foldMap
                       , traverse
+                      , decApp
                       )
 
 import Prelude hiding ( Functor
@@ -64,16 +65,16 @@ instance Applicative Tree where
     Node (a <*> a') (b <*> b')
 
 
-{-| 'dec' is a test function to decrease Leaves by 1
+{-| 'decFun' is a test function to decrease Leaves by 1
 -}
-dec :: Int -> Tree Int
-dec n = if n > 0 then Leaf (n - 1) else Leaf 0  
+decFun :: Int -> Tree Int
+decFun n = if n > 0 then pure (n - 1) else Leaf 0
 
 
 
 {-|
-  >>> *Assign2> ( Node (Leaf 1) (Leaf 2) ) >>= dec
-  >>Node (Leaf 0) (Leaf 1)
+  >>> *Assign2> ( Node (Leaf 1) (Leaf 2) ) >>= decFun
+  >>  Node (Leaf 0) (Leaf 1)
 -}
 instance Monad Tree where
   return = pure
@@ -83,7 +84,7 @@ instance Monad Tree where
 
 {-|
   >>> *Assign2> foldMap (show) (Node  (Leaf 1) (Leaf 2)  )
-  >> "12"
+  >>  "12"
 -}
 instance Foldable Tree where
   foldMap f (Leaf a)    = f a
@@ -91,8 +92,8 @@ instance Foldable Tree where
 
 
 {-|
-  >>> traverse dec ( Node (Leaf 1) (Leaf 2) )
-  >>> Leaf (Node (Leaf 0) (Leaf 1))
+  >>> traverse decApp ( Node (Leaf 1) (Leaf 2) )
+  >>  Just (Node (Leaf 0) (Leaf 1))
 -}
 instance Traversable Tree where
   traverse f (Leaf a)   = pure Leaf <*> f a

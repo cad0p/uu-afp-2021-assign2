@@ -22,6 +22,7 @@ module Assign2
                       , (>>=)
                       , foldMap
                       , traverse
+                      , decApp
                       , Teletype (..)
                       ) where
 
@@ -72,7 +73,7 @@ instance Traversable [] where
 
 
 instance Functor Maybe where
-  fmap f Nothing = Nothing
+  fmap _ Nothing = Nothing
   fmap f (Just x) = Just (f x)
 
 instance Applicative Maybe where
@@ -90,3 +91,7 @@ data Teletype a = Get (Char -> Teletype a)
                 | Put Char (Teletype a)
                 | Return a
 
+{-| 'decApp' is a test function to decrease objects by 1
+-}
+decApp :: Int -> Maybe Int
+decApp n = if n > 0 then Just (n - 1) else Nothing 

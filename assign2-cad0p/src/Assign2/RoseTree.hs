@@ -26,6 +26,7 @@ import Assign2        ( Functor
                       , (>>=)
                       , foldMap
                       , traverse
+                      , decApp
                       )
 
 import Prelude hiding ( Functor
@@ -77,10 +78,7 @@ instance Applicative RoseTree where
 decFun :: Int -> RoseTree Int
 decFun n = if n > 0 then pure (n - 1) else RoseLeaf
 
-{-| 'decApp' is a test function to decrease RoseNodes by 1
--}
-decApp :: Int -> Maybe Int
-decApp n = if n > 0 then Just (n - 1) else Nothing 
+
 
 {-|
   >>> *Assign2.RoseTree> RoseNode 17 [RoseNode 23 [RoseLeaf], RoseNode 29 [RoseLeaf]] >>= decFun
