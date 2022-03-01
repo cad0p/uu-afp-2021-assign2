@@ -55,6 +55,8 @@ test-suite assign2-cad0p-test
   main-is: Spec.hs
   other-modules:
       Test.Assign2.RoseTree
+      Test.Assign2.Teletype
+      Test.Assign2.Tree
       Paths_assign2_cad0p
   hs-source-dirs:
       test

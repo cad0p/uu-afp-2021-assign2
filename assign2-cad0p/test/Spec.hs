@@ -1,6 +1,8 @@
 import          Test.Tasty
-import Test.Assign2.RoseTree 
-                      ( qcRoseTree, huRoseTree )
+
+import Test.Assign2.Tree      ( qcTree    , huTree     )
+import Test.Assign2.RoseTree  ( qcRoseTree, huRoseTree )
+import Test.Assign2.Teletype  ( qcTeletype, huTeletype )
 
 
 
@@ -18,12 +20,6 @@ qcProps     =   testGroup "QuickCheck"  [ qcTree
                                         , qcRoseTree
                                         , qcTeletype ]
 
-qcTree      ::  TestTree
-qcTree      =   testGroup "Tree"        []
-
-qcTeletype  ::  TestTree
-qcTeletype  =   testGroup "Teletype"    []
-
 
 
 unitTests   ::  TestTree
@@ -33,11 +29,3 @@ hUnit       ::  TestTree
 hUnit       =   testGroup "HUnit"       [ huTree
                                         , huRoseTree
                                         , huTeletype ]
-
-huTree      ::  TestTree
-huTree      =   testGroup "Tree"        []
-
-
-
-huTeletype  ::  TestTree
-huTeletype  =   testGroup "Teletype" []
