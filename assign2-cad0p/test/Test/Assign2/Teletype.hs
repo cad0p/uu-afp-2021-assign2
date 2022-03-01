@@ -49,7 +49,8 @@ qcTeletype  =   testGroup "Teletype"    []
 huTeletype  ::  TestTree
 huTeletype  =   testGroup "Teletype"    [ huTeletypeFunctor
                                         , huTeletypeApplicative
-                                        , huTeletypeMonad ]
+                                        , huTeletypeMonad
+                                        , huTeletypeFoldable ]
 
 
 huTeletypeFunctor     :: TestTree
@@ -97,4 +98,17 @@ huTeletypeMonad       = testGroup "Monad"
       Get (Return . digitToInt)
   )
   ]
+
+huTeletypeFoldable    :: TestTree
+huTeletypeFoldable    = testGroup "Foldable"
+  [ testCase "Return" (
+      foldMap show (Return (5 :: Int))
+    @?=
+      "5"
+  )
+  , testCase "RetPut" (
+      foldMap show (Put 'c' (Put 'd' (Return (5 :: Int))))
+    @?=
+      "5"
+  )]
 
