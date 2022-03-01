@@ -59,15 +59,13 @@ instance Functor RoseTree where
   fmap f (RoseNode a rs) =
     RoseNode (f a) ((fmap . fmap) f rs)
 
-instance Functor [] where
-  fmap _ []       = []
-  fmap f (x : xs) = f x : fmap f xs
+
 
 {-|
   https://stackoverflow.com/questions/57950226/how-do-i-map-functions-over-a-rosetree-in-applicative-haskell
 -}
 instance Applicative RoseTree where
-  pure a = RoseNode a []
+  pure a = RoseNode a [RoseLeaf]
   RoseLeaf <*> _  = RoseLeaf
   _ <*> RoseLeaf  = RoseLeaf
   (RoseNode f rs) <*> r'@(RoseNode v rs') =
@@ -76,8 +74,8 @@ instance Applicative RoseTree where
 
 {-| 'dec' is a test function to decrease RoseNodes by 1
 -}
-dec :: Int -> RoseTree Int
-dec n = if n > 0 then RoseNode (n - 1) [] else RoseLeaf
+dec :: Int -> Maybe Int
+dec n = if n > 0 then Just (n - 1) else Nothing 
 
 {-|
   >>> *Assign2.RoseTree> RoseNode 17 [RoseNode 23 [], RoseNode 29 []] >>= dec
@@ -104,10 +102,17 @@ instance Foldable RoseTree where
   According to here: 
   https://mail.haskell.org/pipermail/haskell-cafe/2007-December/036616.html
 
-  This shoud work but it doesn't
+  >>> traverse dec ( RoseNode 1 [RoseLeaf, RoseNode 2 [RoseLeaf], RoseNode 3 [RoseLeaf]] )
+  >>  Just (RoseNode 0 [RoseLeaf,RoseNode 1 [RoseLeaf],RoseNode 2 [RoseLeaf]])
 -}
 instance Traversable RoseTree where
   traverse _ RoseLeaf         = pure RoseLeaf
   traverse f (RoseNode a rs)  =
     pure RoseNode <*> f a <*> traverse (traverse f) rs
+
+{-|
+  
+-}
+
+
 
