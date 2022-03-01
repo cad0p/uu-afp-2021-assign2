@@ -51,10 +51,17 @@ huTeletype  =   testGroup "Teletype"    [ huTeletypeFunctor
 
 
 huTeletypeFunctor     :: TestTree
-huTeletypeFunctor     = testGroup "Functor" []
-  -- [ testCase "1" (
-  --     fmap (+1) ( Return (2 :: Int) )
-  -- )]
+huTeletypeFunctor     = testGroup "Functor"
+  [ testCase "Return" (
+      fmap (+1) ( Return (2 :: Int) )
+    @?=
+      Return 3
+  )
+  , testCase "Put"    (
+      fmap (+1) ( Put 'c' (Return 5) )
+    @?=
+       Put 'c' (Return 6)
+  )]
 
 
 huTeletypeApplicative :: TestTree
