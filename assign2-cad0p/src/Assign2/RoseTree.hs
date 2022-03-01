@@ -74,12 +74,6 @@ instance Applicative RoseTree where
     RoseNode (f v) (map (fmap f) rs' ++ map (<*> r') rs)
 
 
-{-| 'decFun' is a test function to decrease RoseNodes by 1
--}
-decFun :: Int -> RoseTree Int
-decFun n = if n > 0 then pure (n - 1) else RoseLeaf
-
-
 
 {-|
   >>> *Assign2.RoseTree> RoseNode 17 [RoseNode 23 [RoseLeaf], RoseNode 29 [RoseLeaf]] >>= decFun
@@ -106,7 +100,7 @@ instance Foldable RoseTree where
   According to here: 
   https://mail.haskell.org/pipermail/haskell-cafe/2007-December/036616.html
 
-  >>> traverse dec ( RoseNode 1 [RoseLeaf, RoseNode 2 [RoseLeaf], RoseNode 3 [RoseLeaf]] )
+  >>> traverse decApp ( RoseNode 1 [RoseLeaf, RoseNode 2 [RoseLeaf], RoseNode 3 [RoseLeaf]] )
   >>  Just (RoseNode 0 [RoseLeaf,RoseNode 1 [RoseLeaf],RoseNode 2 [RoseLeaf]])
 -}
 instance Traversable RoseTree where

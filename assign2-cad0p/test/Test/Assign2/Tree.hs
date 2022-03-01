@@ -3,13 +3,7 @@ module Test.Assign2.Tree
                       , huTree
                       ) where
 
-import Assign2        ( 
-                        -- Functor
-                      -- , Applicative
-                      -- , Monad
-                      -- , Foldable
-                      -- , Traversable
-                        fmap
+import Assign2        ( fmap
                       -- , (<$>)
                       , pure
                       -- , (<*>)
