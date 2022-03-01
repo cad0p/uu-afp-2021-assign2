@@ -78,9 +78,24 @@ instance Functor Teletype where
   fmap f (Put c tt)   = Put c (f <$> tt)
   fmap f (Return tt)  = Return (f tt)
 
+{-|
+  >>> Return (+1) <*> Return 5
+  >>  Return 6
+-}
 instance Applicative Teletype where
   pure = Return
   (Get g) <*> tt' = Get(\c -> g c <*> tt')
   (Put c tt) <*> tt' = Put c (tt <*> tt')
   (Return a) <*> tt' = a <$> tt'
 
+{-|
+  >>> Return 5 >>= (Put 'c' . Return) -- \x -> Put 'c' (Return x)
+  >>  Put 'c' (Return 5)
+-}
+instance Monad Teletype where
+  return = pure
+  (Get g) >>= g' = Get (\x -> g x >>= g')
+  (Put c tt) >>= f = tt >>= f
+  (Return a) >>= f = f a
+
+  

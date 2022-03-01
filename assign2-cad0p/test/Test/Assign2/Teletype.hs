@@ -1,4 +1,4 @@
-module Test.Assign2.Teletype 
+module Test.Assign2.Teletype
                       ( qcTeletype
                       , huTeletype
                       ) where
@@ -70,10 +70,19 @@ huTeletypeApplicative = testGroup "Applicative"
   [ testCase "Return" (
       Return (+1) <*> Return 5
     @?=
-      Return 6
+      Return (6 :: Int)
   )]
 
 huTeletypeMonad       :: TestTree
 huTeletypeMonad       = testGroup "Monad"
-  [ ]
+  [ testCase "Return" (
+      Return 5 >>= (Put 'c' . Return) -- \x -> Put 'c' (Return x)
+    @?=
+      Put 'c' (Return (5 :: Int))
+  )
+  , testCase "RetPut" (
+      Return 5 >>= (Put 'c' . Put 'd' . Return) -- \x -> Put 'c' (Put 'd' (Return x)
+    @?=
+      Put 'c' (Put 'd' (Return (5 :: Int)))
+  )]
 
