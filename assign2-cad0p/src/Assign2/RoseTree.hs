@@ -73,3 +73,23 @@ instance Applicative RoseTree where
   (RoseNode f rs) <*> r'@(RoseNode v rs') = 
     RoseNode (f v) (map (fmap f) rs' ++ map (<*> r') rs)
 
+
+{-| 'dec' is a test function to decrease RoseNodes by 1
+-}
+dec :: Int -> RoseTree Int
+dec n = if n > 0 then RoseNode (n - 1) [] else RoseLeaf
+
+{-|
+  >>> *Assign2.RoseTree> RoseNode 17 [RoseNode 23 [], RoseNode 29 []] >>= dec
+  >> RoseNode 16 [RoseNode 22 [],RoseNode 28 []]
+-}
+instance Monad RoseTree where
+  return = pure
+  RoseLeaf >>= _ = RoseLeaf
+  RoseNode a l >>= f = case f a of
+    RoseLeaf -> RoseLeaf
+    RoseNode a' l' -> RoseNode a' (l' ++ fmap (>>= f) l)
+
+  
+
+
