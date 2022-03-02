@@ -8,6 +8,9 @@ import Data.Maybe (mapMaybe)
 {-|
   'lookupAll' returns Just vs if all the argument keys occur in the map,
    and Nothing otherwise
+  
+  >>> lookupAll [1, 2] (Map.fromList[(1, "found 1"), (2, "found 2")])
+  >>  Just ["found 1", "found 2"]
 -}
 lookupAll :: Ord k => [k] -> Map.Map k v -> Maybe [v]
 lookupAll ns m
