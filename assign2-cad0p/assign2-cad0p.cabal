@@ -57,6 +57,7 @@ test-suite assign2-cad0p-test
   main-is: Spec.hs
   other-modules:
       Test.Assign2.Helpers
+      Test.Assign2.MapsKeys
       Test.Assign2.RoseTree
       Test.Assign2.Teletype
       Test.Assign2.Tree
@@ -68,6 +69,7 @@ test-suite assign2-cad0p-test
       QuickCheck
     , assign2-cad0p
     , base >=4.7 && <5
+    , containers
     , tasty
     , tasty-hunit
   default-language: Haskell2010

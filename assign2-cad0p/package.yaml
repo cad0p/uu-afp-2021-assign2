@@ -58,3 +58,4 @@ tests:
     - QuickCheck
     - tasty
     - tasty-hunit
+    - containers

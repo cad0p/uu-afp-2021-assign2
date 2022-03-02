@@ -12,7 +12,7 @@ import Data.Maybe (mapMaybe)
 -- lookupAll :: Ord k => [k] -> Map.Map k v -> Maybe [v]
 -- lookupAll ns m = map (\k -> Map.lookup k m) ns
 
-{-| 'lookupSome' returns the list of values for which the keys exist
+{-| 'lookupSome' returns the list of values for which the keys exists
 
   >>> lookupSome [1, 3] (Map.fromList([(1, "found 1"), (2, "found 2")]))
   >>  ["found 1"]
