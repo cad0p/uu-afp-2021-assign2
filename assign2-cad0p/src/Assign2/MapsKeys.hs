@@ -1,3 +1,12 @@
+{-|
+Module      : Assign2.MapsKeys
+Description : lookupAll and lookupSome
+Copyright   : (c) Pier Carlo Cadoppi, 2022
+License     : MIT License
+Maintainer  : p.c.cadoppi@students.uu.nl
+Stability   : experimental
+-}
+
 module Assign2.MapsKeys (lookupAll, lookupSome) where
 import qualified Data.Map as Map
 import Data.Maybe (mapMaybe)
