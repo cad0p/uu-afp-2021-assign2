@@ -1,4 +1,4 @@
-module Assign2.MapsKeys (lookupSome) where
+module Assign2.MapsKeys (lookupAll, lookupSome) where
 import qualified Data.Map as Map
 import Data.Maybe (mapMaybe)
 
@@ -9,8 +9,10 @@ import Data.Maybe (mapMaybe)
   'lookupAll' returns Just vs if all the argument keys occur in the map,
    and Nothing otherwise
 -}
--- lookupAll :: Ord k => [k] -> Map.Map k v -> Maybe [v]
--- lookupAll ns m = map (\k -> Map.lookup k m) ns
+lookupAll :: Ord k => [k] -> Map.Map k v -> Maybe [v]
+lookupAll ns m
+ | length(lookupSome ns m) == length m = Just (lookupSome ns m)
+ | otherwise = Nothing
 
 {-| 'lookupSome' returns the list of values for which the keys exist
 
