@@ -27,6 +27,8 @@ library:
   ghc-options:
   - -Wall
   - -fwarn-incomplete-uni-patterns
+  dependencies:
+  - containers
 
 executables:
   assign2-cad0p-exe:
