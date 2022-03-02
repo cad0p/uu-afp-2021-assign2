@@ -4,6 +4,7 @@ import Test.Assign2.Tree      ( qcTree    , huTree     )
 import Test.Assign2.RoseTree  ( qcRoseTree, huRoseTree )
 import Test.Assign2.Teletype  ( qcTeletype, huTeletype )
 import Test.Assign2.MapsKeys  ( qcLookup  , huLookup   )
+import Test.Assign2.Filter    ( qcFilter  , huFilter   )
 
 
 
@@ -20,7 +21,8 @@ qcProps     ::  TestTree
 qcProps     =   testGroup "QuickCheck"  [ qcTree
                                         , qcRoseTree
                                         , qcTeletype
-                                        , qcLookup ]
+                                        , qcLookup
+                                        , qcFilter ]
 
 
 
@@ -31,5 +33,6 @@ hUnit       ::  TestTree
 hUnit       =   testGroup "HUnit"       [ huTree
                                         , huRoseTree
                                         , huTeletype
-                                        , huLookup ]
+                                        , huLookup
+                                        , huFilter ]
 

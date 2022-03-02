@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Assign2
+      Assign2.Filter
       Assign2.MapsKeys
       Assign2.RoseTree
       Assign2.Teletype
@@ -56,6 +57,7 @@ test-suite assign2-cad0p-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Test.Assign2.Filter
       Test.Assign2.Helpers
       Test.Assign2.MapsKeys
       Test.Assign2.RoseTree
