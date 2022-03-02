@@ -14,8 +14,8 @@ module Assign2.Filter ( gfilter ) where
   'gfilter' is a generic filter function
   that uses 'foldMap'
 
-  >>> 
-  >>  
+  >>> gfilter odd (Node (Leaf 1) (Leaf 2))
+  >>  [1]
 -}
 gfilter :: Foldable f => (a -> Bool) -> f a -> [a]
 gfilter test = foldMap (\x -> [ x | test x])
