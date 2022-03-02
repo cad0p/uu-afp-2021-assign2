@@ -9,7 +9,8 @@ Stability   : experimental
 
 -}
 
-module Assign2.Tree where
+module Assign2.Tree   ( Tree(..) ) 
+                      where
 
 import Assign2        ( Functor
                       , Applicative

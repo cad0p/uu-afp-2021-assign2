@@ -15,11 +15,6 @@ qcFilter = testGroup "Filter" []
 huFilter :: TestTree
 huFilter = testGroup "Filter" [ huGfilter ]
 
-{-| if I add this orphan instance everything works..
--}
-instance Foldable Tree where
-  foldMap f (Leaf a)    = f a
-  foldMap f (Node a b)  = foldMap f a <> foldMap f b
 
 {-|
   Error: No instance for (Foldable Tree) arising from a use of ‘gfilter’

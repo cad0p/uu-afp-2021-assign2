@@ -8,8 +8,7 @@ Stability   : experimental
 -}
 
 module Assign2.RoseTree
-                      ( Applicative
-                      , RoseTree (..)
+                      (RoseTree (..)
                       ) where
 
 import Assign2        ( Functor
