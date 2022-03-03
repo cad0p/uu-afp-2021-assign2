@@ -3,38 +3,20 @@ module Test.Assign2.RoseTree
                       , huRoseTree
                       ) where
 
-import Assign2        ( fmap
-                      -- , (<$>)
-                      , pure
-                      , (<*>)
-                      -- , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Assign2              (fmap, foldMap, pure, traverse, (<*>),
+                                       (>>=))
 
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Prelude              hiding (Applicative, Foldable, Functor,
+                                       Monad, Traversable, fmap, foldMap, pure,
+                                       return, traverse, (<$>), (<*>), (>>=))
 
-import          Test.Tasty
-import          Test.Tasty.HUnit
-import          Test.Assign2.Helpers (decApp)
+import           Test.Assign2.Helpers (decApp)
+import           Test.Tasty
+import           Test.Tasty.HUnit
 
 
-import          Assign2.RoseTree (RoseTree(..))
+import           Assign2.RoseTree     (RoseTree (..))
 
 
 qcRoseTree  ::  TestTree

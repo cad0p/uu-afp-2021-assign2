@@ -10,35 +10,13 @@ Stability   : experimental
 
 module Assign2.Filter ( gfilter ) where
 
-import Assign2        ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Assign2 (Applicative, Foldable, Functor, Monad, Traversable,
+                          fmap, foldMap, pure, return, traverse, (<$>), (<*>),
+                          (>>=))
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Prelude hiding (Applicative, Foldable, Functor, Monad,
+                          Traversable, fmap, foldMap, pure, return, traverse,
+                          (<$>), (<*>), (>>=))
 
 
 {-|

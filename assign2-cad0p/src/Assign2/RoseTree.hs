@@ -11,36 +11,14 @@ module Assign2.RoseTree
                       (RoseTree (..)
                       ) where
 
-import Assign2        ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Assign2       (Applicative, Foldable, Functor, Monad,
+                                Traversable, fmap, foldMap, pure, return,
+                                traverse, (<$>), (<*>), (>>=))
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
-import Data.Typeable (Typeable)
+import           Data.Typeable (Typeable)
+import           Prelude       hiding (Applicative, Foldable, Functor, Monad,
+                                Traversable, fmap, foldMap, pure, return,
+                                traverse, (<$>), (<*>), (>>=))
 
 
 data RoseTree a = RoseNode a [RoseTree a] | RoseLeaf
@@ -80,7 +58,7 @@ instance Monad RoseTree where
   return = pure
   RoseLeaf >>= _ = RoseLeaf
   RoseNode a l >>= f = case f a of
-    RoseLeaf -> RoseLeaf
+    RoseLeaf       -> RoseLeaf
     RoseNode a' l' -> RoseNode a' (l' ++ fmap (>>= f) l)
 
 
@@ -94,7 +72,7 @@ instance Foldable RoseTree where
 
 
 {-|
-  According to here: 
+  According to here:
   https://mail.haskell.org/pipermail/haskell-cafe/2007-December/036616.html
 
   >>> traverse decApp ( RoseNode 1 [RoseLeaf, RoseNode 2 [RoseLeaf], RoseNode 3 [RoseLeaf]] )

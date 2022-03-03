@@ -1,11 +1,11 @@
 module Test.Assign2.Filter (qcFilter, huFilter) where
 
 
-import Test.Tasty
-import Test.Tasty.HUnit
+import           Test.Tasty
+import           Test.Tasty.HUnit
 
-import Assign2.Filter (gfilter)
-import Assign2.Tree   (Tree(..))
+import           Assign2.Filter   (gfilter)
+import           Assign2.Tree     (Tree (..))
 
 
 
@@ -20,7 +20,7 @@ huFilter = testGroup "Filter" [ huGfilter ]
   Error: No instance for (Foldable Tree) arising from a use of ‘gfilter’
 -}
 huGfilter :: TestTree
-huGfilter = testGroup "gfilter" 
+huGfilter = testGroup "gfilter"
   [ testCase "1" (
       gfilter odd (Node (Leaf (1 :: Int)) (Leaf 2))
     @?=

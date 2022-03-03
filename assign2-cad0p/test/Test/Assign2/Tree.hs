@@ -1,40 +1,21 @@
-module Test.Assign2.Tree 
+module Test.Assign2.Tree
                       ( qcTree
                       , huTree
                       ) where
 
-import Assign2        ( fmap
-                      -- , (<$>)
-                      , pure
-                      -- , (<*>)
-                      -- , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Assign2              (fmap, foldMap, pure, traverse, (>>=))
 
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Prelude              hiding (Applicative, Foldable, Functor,
+                                       Monad, Traversable, fmap, foldMap, pure,
+                                       return, traverse, (<$>), (<*>), (>>=))
 
-import          Test.Tasty
-import          Test.Tasty.HUnit
-import          Test.Assign2.Helpers (decApp)
+import           Test.Assign2.Helpers (decApp)
+import           Test.Tasty
+import           Test.Tasty.HUnit
 
 
-import          Assign2.Tree (Tree(..))
+import           Assign2.Tree         (Tree (..))
 
 
 qcTree  ::  TestTree
@@ -42,7 +23,7 @@ qcTree  =   testGroup "Tree"    []
 
 
 huTree  ::  TestTree
-huTree  =   testGroup "Tree"    [ huTreeFunctor 
+huTree  =   testGroup "Tree"    [ huTreeFunctor
                                 , huTreeApplicative
                                 , huTreeMonad
                                 , huTreeFoldable
@@ -52,7 +33,7 @@ huTreeFunctor     :: TestTree
 huTreeFunctor     = testGroup "Functor"
   [ testCase "1" (
       fmap (+1) ( Node (Leaf 1) (Leaf 2) )
-    @?= 
+    @?=
       (Node (Leaf 2) (Leaf 3) :: Tree Int)
   )]
 

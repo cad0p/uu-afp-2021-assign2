@@ -8,8 +8,8 @@ Stability   : experimental
 -}
 
 module Assign2.MapsKeys (lookupAll, lookupSome) where
-import qualified Data.Map as Map
-import Data.Maybe (mapMaybe)
+import qualified Data.Map   as Map
+import           Data.Maybe (mapMaybe)
 
 -- Data.Map is part of containers, and containers package does use `Internal` naming :)
 -- https://www.stackage.org/package/containers
@@ -17,7 +17,7 @@ import Data.Maybe (mapMaybe)
 {-|
   'lookupAll' returns Just vs if all the argument keys occur in the map,
    and Nothing otherwise
-  
+
   >>> lookupAll [1, 2] (Map.fromList[(1, "found 1"), (2, "found 2")])
   >>  Just ["found 1", "found 2"]
 -}

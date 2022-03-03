@@ -9,4 +9,4 @@ module Test.Assign2.Helpers (decApp) where
 {-| 'decApp' is a test Applicative function to decrease object instances by 1
 -}
 decApp :: Int -> Maybe Int
-decApp n = if n > 0 then Just (n - 1) else Nothing 
+decApp n = if n > 0 then Just (n - 1) else Nothing

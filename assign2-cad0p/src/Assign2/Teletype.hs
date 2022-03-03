@@ -13,36 +13,14 @@ module Assign2.Teletype
   ( Teletype(..)
   ) where
 
-import Assign2        ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Assign2       (Applicative, Foldable, Functor, Monad,
+                                Traversable, fmap, foldMap, pure, return,
+                                traverse, (<$>), (<*>), (>>=))
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
-import Data.Typeable (Typeable)
+import           Data.Typeable (Typeable)
+import           Prelude       hiding (Applicative, Foldable, Functor, Monad,
+                                Traversable, fmap, foldMap, pure, return,
+                                traverse, (<$>), (<*>), (>>=))
 
 
 data Teletype a = Get (Char -> Teletype a)
@@ -57,16 +35,16 @@ data Teletype a = Get (Char -> Teletype a)
   https://stackoverflow.com/a/28840366/5029932
 -}
 instance (Show a, Num a) => Show (Teletype a) where
-  show (Get _) = "Get g"
+  show (Get _)    = "Get g"
   show (Put c tt) = "Put " ++ [c] ++ " (" ++ show tt ++ ")"
   show (Return a) = "Return " ++ show a
 
 
 instance (Eq a, Num a) => Eq (Teletype a) where
-  (Get g) == (Get g') = g 'c' == g' 'c'
+  (Get g) == (Get g')        = g 'c' == g' 'c'
   (Put c tt) == (Put c' tt') = c == c' && tt == tt'
-  (Return a) == (Return a') = a == a'
-  _ == _ = False
+  (Return a) == (Return a')  = a == a'
+  _ == _                     = False
 
 
 {-|
@@ -74,9 +52,9 @@ instance (Eq a, Num a) => Eq (Teletype a) where
   >>  Return 3
 -}
 instance Functor Teletype where
-  fmap f (Get tt)     = Get (fmap f . tt)
-  fmap f (Put c tt)   = Put c (f <$> tt)
-  fmap f (Return tt)  = Return (f tt)
+  fmap f (Get tt)    = Get (fmap f . tt)
+  fmap f (Put c tt)  = Put c (f <$> tt)
+  fmap f (Return tt) = Return (f tt)
 
 {-|
   >>> Return (+1) <*> Return 5
@@ -84,7 +62,7 @@ instance Functor Teletype where
 -}
 instance Applicative Teletype where
   pure = Return
-  (Get g) <*> tt' = Get(\c -> g c <*> tt')
+  (Get g) <*> tt'    = Get(\c -> g c <*> tt')
   (Put c tt) <*> tt' = Put c (tt <*> tt')
   (Return a) <*> tt' = a <$> tt'
 
@@ -94,7 +72,7 @@ instance Applicative Teletype where
 -}
 instance Monad Teletype where
   return = pure
-  (Get g) >>= g' = Get (\x -> g x >>= g')
+  (Get g) >>= g'   = Get (\x -> g x >>= g')
   (Put _ tt) >>= f = tt >>= f
   (Return a) >>= f = f a
 
@@ -103,13 +81,13 @@ instance Monad Teletype where
   >>  "5"
 -}
 instance Foldable Teletype where
-  foldMap _ (Get _)    = mempty 
-  foldMap f (Put _ tt) = foldMap f tt 
+  foldMap _ (Get _)    = mempty
+  foldMap f (Put _ tt) = foldMap f tt
   foldMap f (Return a) = f a
 
 {-|
-  >>> 
-  >>  
+  >>>
+  >>
 -}
 instance Traversable Teletype where
   -- traverse f (Get g)

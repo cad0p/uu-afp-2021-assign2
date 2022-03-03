@@ -1,12 +1,12 @@
 module Test.Assign2.MapsKeys (qcLookup, huLookup) where
 
 
-import Test.Tasty
-import Test.Tasty.HUnit
+import           Test.Tasty
+import           Test.Tasty.HUnit
 
-import qualified Data.Map as Map
+import qualified Data.Map         as Map
 
-import Assign2.MapsKeys (lookupAll, lookupSome)
+import           Assign2.MapsKeys (lookupAll, lookupSome)
 
 qcLookup :: TestTree
 qcLookup =  testGroup "Lookup" []

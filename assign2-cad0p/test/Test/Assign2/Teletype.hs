@@ -3,43 +3,21 @@ module Test.Assign2.Teletype
                       , huTeletype
                       ) where
 
-import Assign2        ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Assign2              (Applicative, Foldable, Functor, Monad,
+                                       Traversable, fmap, foldMap, pure, return,
+                                       traverse, (<$>), (<*>), (>>=))
 
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Prelude              hiding (Applicative, Foldable, Functor,
+                                       Monad, Traversable, fmap, foldMap, pure,
+                                       return, traverse, (<$>), (<*>), (>>=))
 
-import          Test.Tasty
-import          Test.Tasty.HUnit
-import          Test.Assign2.Helpers (decApp)
+import           Test.Assign2.Helpers (decApp)
+import           Test.Tasty
+import           Test.Tasty.HUnit
 
-import          Assign2.Teletype (Teletype(..))
-import Data.Char (digitToInt)
+import           Assign2.Teletype     (Teletype (..))
+import           Data.Char            (digitToInt)
 
 
 qcTeletype  ::  TestTree

@@ -1,10 +1,10 @@
-import Test.Tasty
+import           Test.Tasty
 
-import Test.Assign2.Tree      ( qcTree    , huTree     )
-import Test.Assign2.RoseTree  ( qcRoseTree, huRoseTree )
-import Test.Assign2.Teletype  ( qcTeletype, huTeletype )
-import Test.Assign2.MapsKeys  ( qcLookup  , huLookup   )
-import Test.Assign2.Filter    ( qcFilter  , huFilter   )
+import           Test.Assign2.Filter   (huFilter, qcFilter)
+import           Test.Assign2.MapsKeys (huLookup, qcLookup)
+import           Test.Assign2.RoseTree (huRoseTree, qcRoseTree)
+import           Test.Assign2.Teletype (huTeletype, qcTeletype)
+import           Test.Assign2.Tree     (huTree, qcTree)
 
 
 

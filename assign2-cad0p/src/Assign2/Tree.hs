@@ -9,40 +9,18 @@ Stability   : experimental
 
 -}
 
-module Assign2.Tree   ( Tree(..) ) 
+module Assign2.Tree   ( Tree(..) )
                       where
 
-import Assign2        ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap 
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Assign2       (Applicative, Foldable, Functor, Monad,
+                                Traversable, fmap, foldMap, pure, return,
+                                traverse, (<$>), (<*>), (>>=))
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap 
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Prelude       hiding (Applicative, Foldable, Functor, Monad,
+                                Traversable, fmap, foldMap, pure, return,
+                                traverse, (<$>), (<*>), (>>=))
 
-import Data.Typeable (Typeable)
+import           Data.Typeable (Typeable)
 
 data Tree a = Leaf a | Node (Tree a) (Tree a)
   deriving (Eq, Show, Typeable)
@@ -53,7 +31,7 @@ data Tree a = Leaf a | Node (Tree a) (Tree a)
   >> Node (Leaf 2) (Leaf 3)
 -}
 instance Functor Tree where
-  fmap f (Leaf a) = Leaf (f a)
+  fmap f (Leaf a)   = Leaf (f a)
   fmap f (Node a b) = Node (fmap f a) (fmap f b)
 
 
@@ -82,8 +60,8 @@ instance Monad Tree where
   >>  "12"
 -}
 instance Foldable Tree where
-  foldMap f (Leaf a)    = f a
-  foldMap f (Node a b)  = foldMap f a <> foldMap f b
+  foldMap f (Leaf a)   = f a
+  foldMap f (Node a b) = foldMap f a <> foldMap f b
 
 
 {-|
@@ -92,6 +70,6 @@ instance Foldable Tree where
 -}
 instance Traversable Tree where
   traverse f (Leaf a)   = Leaf <$> f a
-  traverse f (Node a b) = 
+  traverse f (Node a b) =
     Node <$> traverse f a <*> traverse f b
 
