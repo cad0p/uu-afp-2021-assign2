@@ -27,20 +27,9 @@ module Assign2
 
 -- https://stackoverflow.com/questions/34349072/importing-a-data-type-in-haskell
 
-import Prelude hiding ( Functor
-                      , Applicative
-                      , Monad
-                      , Foldable
-                      , Traversable
-                      , fmap
-                      , (<$>)
-                      , pure
-                      , (<*>)
-                      , return
-                      , (>>=)
-                      , foldMap
-                      , traverse
-                      )
+import           Prelude hiding (Applicative, Foldable, Functor, Monad,
+                          Traversable, fmap, foldMap, pure, return, traverse,
+                          (<$>), (<*>), (>>=))
 
 
 -- Given the standard type classes for functors, applicative functors and monads:
@@ -76,12 +65,12 @@ instance Traversable [] where
 
 
 instance Functor Maybe where
-  fmap _ Nothing = Nothing
+  fmap _ Nothing  = Nothing
   fmap f (Just x) = Just (f x)
 
 instance Applicative Maybe where
   pure = Just
-  Nothing <*> _ = Nothing
+  Nothing <*> _          = Nothing
   (Just f) <*> something = fmap f something
 
 
