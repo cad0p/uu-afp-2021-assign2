@@ -31,4 +31,5 @@ huGfilter = testGroup "gfilter"
     @?=
       [1, 3]
   )
+  , testCase "WRONG" ( True @?= False )
   ]
