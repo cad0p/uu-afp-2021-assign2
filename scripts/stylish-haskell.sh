@@ -22,6 +22,5 @@ cleanup(){
 trap cleanup EXIT
 
 curl --progress-bar --location -o$TEMP/$PACKAGE.tar.gz $URL
-file $TEMP/$PACKAGE.tar.gz
 tar -xzf $TEMP/$PACKAGE.tar.gz -C$TEMP
 $TEMP/$PACKAGE-$VERSION/$PACKAGE $*
