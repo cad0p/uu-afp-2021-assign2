@@ -6,7 +6,7 @@ set -e
 PACKAGE=stylish-haskell
 echo Downloading and running $PACKAGE...
 
-RELEASE=$(curl --silent https://github.com/haskell/$PACKAGE/releases | egrep '[^\"]*/v[0-9|.]+' -m 1 -o)
+RELEASE=https://github.com$(curl --silent https://github.com/haskell/$PACKAGE/releases | egrep '[^\"]*/v[0-9|.]+' -m 1 -o)
 echo release:
 echo $RELEASE
 URL=https://github.com/$(echo $RELEASE | grep -o '\"[^\"]*-linux-x86_64\.tar\.gz\"' | sed s/\"//g | head -n1)
