@@ -38,10 +38,11 @@ instance Functor Tree where
 instance Applicative Tree where
   pure = Leaf
   Leaf f      <*> v             = f <$> v
-  Node a b    <*> Leaf v        =
-    Node (a <*> pure v) (b <*> pure v)
-  (Node a b)  <*> (Node a' b')  =
-    Node (a <*> a') (b <*> b')
+  -- Node a b    <*> Leaf v        =
+  --   Node (a <*> pure v) (b <*> pure v)
+  -- (Node a b)  <*> (Node a' b')  =
+  --   Node (a <*> a') (b <*> b')
+  Node a b <*> v = Node (a <*> v) (b <*> v)
 
 
 
