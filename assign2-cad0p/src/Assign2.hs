@@ -61,7 +61,7 @@ instance Functor [] where
 
 instance Traversable [] where
   traverse _ []     = pure []
-  traverse f (x:xs) = pure (:) <*> f x <*> traverse f xs
+  traverse f (x:xs) = (:) <$> f x <*> traverse f xs
 
 
 instance Functor Maybe where
