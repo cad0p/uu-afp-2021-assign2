@@ -7,10 +7,10 @@ PACKAGE=stylish-haskell
 echo Downloading and running $PACKAGE...
 
 RELEASES=$(curl --silent https://github.com/haskell/$PACKAGE/releases)
-echo "releases:"
+echo releases:
 echo $RELEASES
 URL=https://github.com/$(echo $RELEASES | grep -o '\"[^\"]*-linux-x86_64\.tar\.gz\"' | sed s/\"//g | head -n1)
-echo "url:"
+echo url:
 echo $URL
 VERSION=$(echo $URL | sed -e 's/.*-\(v[\.0-9]\+-linux-x86_64\)\.tar\.gz/\1/')
 TEMP=$(mktemp --directory .$PACKAGE-XXXXX)
